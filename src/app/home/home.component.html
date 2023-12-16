@@ -11,63 +11,20 @@
   <div class="mt-8 flex gap-8">
     <div
       class="w-1/3 overflow-hidden rounded-md border border-solid border-slate-300"
+      *ngFor="let offer of offers"
     >
       <img
-        src="assets/miniBurguers.jpg"
-        alt="Mini hambúrgueres"
+        [src]="offer.imagens[0].url"
+        [alt]="offer.titulo"
         class="h-52 w-full object-cover"
       />
       <div class="p-4">
-        <p class="text-2xl font-bold">Super Burger</p>
-        <p class="mt-2">Rodízio de mini-hambúrguer com opção de entrada.</p>
-        <p class="my-3 text-xl font-bold text-orange-600">R$ 29,90</p>
+        <p class="text-2xl font-bold">{{ offer.titulo }}</p>
+        <p class="mt-2">{{ offer.descricao_oferta }}</p>
+        <p class="my-3 text-xl font-bold text-orange-600">{{ offer.valor }}</p>
         <button
           type="button"
-          class="hover: rounded border border-blue-500 bg-slate-50 px-3 py-2 text-blue-500 transition hover:bg-blue-500 hover:text-slate-50"
-        >
-          Ver oferta
-        </button>
-      </div>
-    </div>
-
-    <div
-      class="w-1/3 overflow-hidden rounded-md border border-solid border-slate-300"
-    >
-      <img
-        src="assets/mexicanFood.jpg"
-        alt="Mini hambúrgueres"
-        class="h-52 w-full object-cover"
-      />
-      <div class="p-4">
-        <p class="text-2xl font-bold">Cozinha Mexicana</p>
-        <p class="mt-2">Almoço ou Jantar com Rodízio Mexicano delicioso.</p>
-        <p class="my-3 text-xl font-bold text-orange-600">R$ 32,90</p>
-        <button
-          type="button"
-          class="hover: rounded border border-blue-500 bg-slate-50 px-3 py-2 text-blue-500 transition hover:bg-blue-500 hover:text-slate-50"
-        >
-          Ver oferta
-        </button>
-      </div>
-    </div>
-
-    <div
-      class="w-1/3 overflow-hidden rounded-md border border-solid border-slate-300"
-    >
-      <img
-        src="assets/estancia.jpg"
-        alt="Mini hambúrgueres"
-        class="h-52 w-full object-cover"
-      />
-      <div class="p-4">
-        <p class="text-2xl font-bold">Estância das águas</p>
-        <p class="mt-2">
-          Diversão de bebidas e sobremesas na estancia das águas.
-        </p>
-        <p class="my-3 text-xl font-bold text-orange-600">R$ 29,90</p>
-        <button
-          type="button"
-          class="hover: rounded border border-blue-500 bg-slate-50 px-3 py-2 text-blue-500 transition hover:bg-blue-500 hover:text-slate-50"
+          class="rounded border border-blue-500 bg-slate-50 px-3 py-2 text-blue-500 transition hover:bg-blue-500 hover:text-slate-50"
         >
           Ver oferta
         </button>
