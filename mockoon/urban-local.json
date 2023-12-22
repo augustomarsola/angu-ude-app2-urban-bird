@@ -1,0 +1,148 @@
+{
+  "uuid": "3336fe04-1a2e-42f0-8046-9b32435c1f83",
+  "lastMigration": 32,
+  "name": "Urban local",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3001,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "2354a2bc-dd14-4183-8340-ea3f4d59ec0b",
+      "type": "crud",
+      "documentation": "",
+      "method": "",
+      "endpoint": "offers",
+      "responses": [
+        {
+          "uuid": "b4d22d61-5a65-499b-b3b4-d90931c25961",
+          "body": "{}",
+          "latency": 150,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "rugw",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "2bd3aeb6-ce79-4a72-bf50-13562b32adda",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "offers",
+      "responses": [
+        {
+          "uuid": "e4959457-fe6c-476e-8b37-944a2290ba46",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "3rnt",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "dastaque",
+              "value": "true",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "2bd3aeb6-ce79-4a72-bf50-13562b32adda"
+    },
+    {
+      "type": "route",
+      "uuid": "2354a2bc-dd14-4183-8340-ea3f4d59ec0b"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [
+    {
+      "uuid": "fe7d8fed-83c5-4077-a13d-b6765fbfaa3c",
+      "id": "rugw",
+      "name": "All Products",
+      "documentation": "",
+      "value": "[\r\n\t\t{\r\n\t\t\t\"id\": 1,\r\n\t\t\t\"categoria\": \"restaurante\",\r\n\t\t\t\"titulo\": \"Super Burger\",\r\n\t\t\t\"descricao_oferta\": \"Rodízio de Mini-hambúrger com opção de entrada.\",\r\n\t\t\t\"anunciante\": \"Original Burger\",\r\n\t\t\t\"valor\": 29.90,\r\n\t\t\t\"destaque\": true,\r\n\t\t\t\"imagens\": [\r\n\t\t\t\t{\"url\": \"/assets/ofertas/1/img1.jpg\"},\r\n\t\t\t\t{\"url\": \"/assets/ofertas/1/img2.jpg\"},\r\n\t\t\t\t{\"url\": \"/assets/ofertas/1/img3.jpg\"},\r\n\t\t\t\t{\"url\": \"/assets/ofertas/1/img4.jpg\"}\r\n\t\t\t]\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"id\": 2,\r\n\t\t\t\"categoria\": \"restaurante\",\r\n\t\t\t\"titulo\": \"Cozinha Mexicana\",\r\n\t\t\t\"descricao_oferta\": \"Almoço ou Jantar com Rodízio Mexicano delicioso.\",\r\n\t\t\t\"anunciante\": \"Mexicana\",\r\n\t\t\t\"valor\": 32.90,\r\n\t\t\t\"destaque\": true,\r\n\t\t\t\"imagens\": [\r\n\t\t\t\t{\"url\": \"/assets/ofertas/2/img1.jpg\"},\r\n\t\t\t\t{\"url\": \"/assets/ofertas/2/img2.jpg\"},\r\n\t\t\t\t{\"url\": \"/assets/ofertas/2/img3.jpg\"},\r\n\t\t\t\t{\"url\": \"/assets/ofertas/2/img4.jpg\"}\r\n\t\t\t]\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"id\": 3,\r\n\t\t\t\"categoria\": \"restaurante\",\r\n\t\t\t\"titulo\": \"Pizzas Grandes\",\r\n\t\t\t\"descricao_oferta\": \"Pizza Grande, Mussarela, Marguerita ou outras!\",\r\n\t\t\t\"anunciante\": \"Nossa Pizza\",\r\n\t\t\t\"valor\": 21.90,\r\n\t\t\t\"destaque\": false,\r\n\t\t\t\"imagens\": [\r\n\t\t\t\t{\"url\": \"/assets/ofertas/3/img1.jpg\"},\r\n\t\t\t\t{\"url\": \"/assets/ofertas/3/img2.jpg\"},\r\n\t\t\t\t{\"url\": \"/assets/ofertas/3/img3.jpg\"},\r\n\t\t\t\t{\"url\": \"/assets/ofertas/3/img4.jpg\"}\r\n\t\t\t]\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"id\": 4,\r\n\t\t\t\"categoria\": \"diversao\",\r\n\t\t\t\"titulo\": \"Estância das águas\",\r\n\t\t\t\"descricao_oferta\": \"Diversão garantida com piscinas, trilhas e muito mais.\",\r\n\t\t\t\"anunciante\": \"Estância das águas\",\r\n\t\t\t\"valor\": 31.90,\r\n\t\t\t\"destaque\": true,\r\n\t\t\t\"imagens\": [\r\n\t\t\t\t{\"url\": \"/assets/ofertas/4/img1.jpg\"},\r\n\t\t\t\t{\"url\": \"/assets/ofertas/4/img2.jpg\"},\r\n\t\t\t\t{\"url\": \"/assets/ofertas/4/img3.jpg\"},\r\n\t\t\t\t{\"url\": \"/assets/ofertas/4/img4.jpg\"},\r\n\t\t\t\t{\"url\": \"/assets/ofertas/4/img5.jpg\"},\r\n\t\t\t\t{\"url\": \"/assets/ofertas/4/img6.jpg\"}\r\n\t\t\t]\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"id\": 5,\r\n\t\t\t\"categoria\": \"diversao\",\r\n\t\t\t\"titulo\": \"Kart\",\r\n\t\t\t\"descricao_oferta\": \"Bateria de Kart de 30 minutos.\",\r\n\t\t\t\"anunciante\": \"Speed Kart\",\r\n\t\t\t\"valor\": 54.90,\r\n\t\t\t\"destaque\": false,\r\n\t\t\t\"imagens\": [\r\n\t\t\t\t{\"url\": \"/assets/ofertas/5/img1.jpg\"},\r\n\t\t\t\t{\"url\": \"/assets/ofertas/5/img2.jpg\"}\r\n\t\t\t]\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"id\": 6,\r\n\t\t\t\"categoria\": \"diversao\",\r\n\t\t\t\"titulo\": \"Academia de tiro\",\r\n\t\t\t\"descricao_oferta\": \"Sessão de tiro dinâmico com Instrutor, Estande, Alvo e Equipamentos.\",\r\n\t\t\t\"anunciante\": \"Academia de Tiro\",\r\n\t\t\t\"valor\": 89.90,\r\n\t\t\t\"destaque\": false,\r\n\t\t\t\"imagens\": [\r\n\t\t\t\t{\"url\": \"/assets/ofertas/6/img1.jpg\"},\r\n\t\t\t\t{\"url\": \"/assets/ofertas/6/img2.jpg\"}\r\n\t\t\t]\r\n\t\t}\t\r\n\t]"
+    },
+    {
+      "uuid": "fc920f18-3ed8-428e-990b-796881d6a6f0",
+      "id": "3rnt",
+      "name": "hot Products",
+      "documentation": "",
+      "value": "[\r\n\t\t{\r\n\t\t\t\"id\": 1,\r\n\t\t\t\"categoria\": \"restaurante\",\r\n\t\t\t\"titulo\": \"Super Burger\",\r\n\t\t\t\"descricao_oferta\": \"Rodízio de Mini-hambúrger com opção de entrada.\",\r\n\t\t\t\"anunciante\": \"Original Burger\",\r\n\t\t\t\"valor\": 29.90,\r\n\t\t\t\"destaque\": true,\r\n\t\t\t\"imagens\": [\r\n\t\t\t\t{\"url\": \"/assets/ofertas/1/img1.jpg\"},\r\n\t\t\t\t{\"url\": \"/assets/ofertas/1/img2.jpg\"},\r\n\t\t\t\t{\"url\": \"/assets/ofertas/1/img3.jpg\"},\r\n\t\t\t\t{\"url\": \"/assets/ofertas/1/img4.jpg\"}\r\n\t\t\t]\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"id\": 2,\r\n\t\t\t\"categoria\": \"restaurante\",\r\n\t\t\t\"titulo\": \"Cozinha Mexicana\",\r\n\t\t\t\"descricao_oferta\": \"Almoço ou Jantar com Rodízio Mexicano delicioso.\",\r\n\t\t\t\"anunciante\": \"Mexicana\",\r\n\t\t\t\"valor\": 32.90,\r\n\t\t\t\"destaque\": true,\r\n\t\t\t\"imagens\": [\r\n\t\t\t\t{\"url\": \"/assets/ofertas/2/img1.jpg\"},\r\n\t\t\t\t{\"url\": \"/assets/ofertas/2/img2.jpg\"},\r\n\t\t\t\t{\"url\": \"/assets/ofertas/2/img3.jpg\"},\r\n\t\t\t\t{\"url\": \"/assets/ofertas/2/img4.jpg\"}\r\n\t\t\t]\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"id\": 4,\r\n\t\t\t\"categoria\": \"diversao\",\r\n\t\t\t\"titulo\": \"Estância das águas\",\r\n\t\t\t\"descricao_oferta\": \"Diversão garantida com piscinas, trilhas e muito mais.\",\r\n\t\t\t\"anunciante\": \"Estância das águas\",\r\n\t\t\t\"valor\": 31.90,\r\n\t\t\t\"destaque\": true,\r\n\t\t\t\"imagens\": [\r\n\t\t\t\t{\"url\": \"/assets/ofertas/4/img1.jpg\"},\r\n\t\t\t\t{\"url\": \"/assets/ofertas/4/img2.jpg\"},\r\n\t\t\t\t{\"url\": \"/assets/ofertas/4/img3.jpg\"},\r\n\t\t\t\t{\"url\": \"/assets/ofertas/4/img4.jpg\"},\r\n\t\t\t\t{\"url\": \"/assets/ofertas/4/img5.jpg\"},\r\n\t\t\t\t{\"url\": \"/assets/ofertas/4/img6.jpg\"}\r\n\t\t\t]\r\n\t\t}\r\n\t]"
+    }
+  ],
+  "callbacks": []
+}
