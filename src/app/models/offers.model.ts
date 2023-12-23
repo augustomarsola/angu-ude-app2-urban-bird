@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs';
+
 export class Offers {
   public id: number = 0;
   public categoria: string = '';
@@ -12,3 +14,9 @@ export class Offers {
     },
   ];
 }
+
+export type ProductProps = {
+  title: string;
+  description: string;
+  products$: Observable<Offers[]>;
+};

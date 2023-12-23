@@ -1,13 +1,13 @@
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { OffersService } from '../services/offers.service';
-import { Offers } from '../models/offers.model';
-import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
+import { Offers } from '../models/offers.model';
+import { OffersService } from '../services/offers.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CurrencyPipe],
   templateUrl: './home.component.html',
   providers: [OffersService],
 })

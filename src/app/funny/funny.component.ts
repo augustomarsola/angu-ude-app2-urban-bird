@@ -1,9 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { of } from 'rxjs';
+import { Offers, ProductProps } from '../models/offers.model';
+import { ProductVisualizationComponent } from '../product-visualization/product-visualization.component';
+import { OffersService } from '../services/offers.service';
 
 @Component({
   selector: 'app-funny',
   standalone: true,
-  imports: [],
+  imports: [ProductVisualizationComponent],
   templateUrl: './funny.component.html',
 })
-export class FunnyComponent {}
+export class FunnyComponent implements OnInit {
+  public productProps: ProductProps = {
+    title: 'Cinema, viagens, diversão e muito mais!',
+    description:
+      'Conheça as melhores ofertas para você se divertir quando quiser:',
+    products$: of<Offers[]>([]),
+  };
+
+  private _offersService: OffersService = inject(OffersService);
+
+  ngOnInit(): void {
+    this.productProps.products$ =
+      this._offersService.getOffersByCategory('diversao');
+  }
+}

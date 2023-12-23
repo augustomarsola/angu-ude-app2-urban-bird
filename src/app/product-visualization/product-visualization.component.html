@@ -1,0 +1,33 @@
+<section class="container mx-auto mb-8 py-8 text-slate-800">
+  <h1 class="text-center text-3xl font-semibold">{{ productProps.title }}</h1>
+  <h2 class="text-center text-xl font-medium">
+    {{ productProps.description }}
+  </h2>
+  <ul class="mt-4 flex flex-col">
+    @for (product of productProps.products$ | async; track product.id) {
+      <li class="mt-4 flex gap-8 border-t border-slate-300 pt-4">
+        <img
+          [src]="product.imagens[0].url"
+          [alt]="product.titulo"
+          class="h-52 w-full max-w-xs rounded object-cover"
+        />
+        <div>
+          <p class="text-2xl font-bold">{{ product.titulo }}</p>
+          <p class="mt-1 text-xl text-slate-500">
+            {{ product.descricao_oferta }}
+          </p>
+          <p class="mt-1">
+            Anunciado por:
+            <span class="font-bold">{{ product.anunciante }}</span>
+          </p>
+          <p class="mt-4">{{ product.valor | currency: "BRL" }}</p>
+          <button
+            class="mt-4 rounded border border-green-600 bg-slate-50 px-3 py-2 text-green-600 transition hover:bg-green-600 hover:text-slate-50"
+          >
+            Ver oferta
+          </button>
+        </div>
+      </li>
+    }
+  </ul>
+</section>
