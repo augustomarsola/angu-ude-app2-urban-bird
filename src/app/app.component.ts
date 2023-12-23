@@ -4,6 +4,7 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { FunnyComponent } from './funny/funny.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import { RestaurantComponent } from './restaurant/restaurant.component';
     FooterComponent,
     FunnyComponent,
     RestaurantComponent,
+    RouterOutlet,
   ],
   templateUrl: './app.component.html',
 })
