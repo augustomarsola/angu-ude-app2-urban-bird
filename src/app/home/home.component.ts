@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OffersService } from '../services/offers.service';
 import { Offers } from '../models/offers.model';
 import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -11,13 +12,11 @@ import { CommonModule } from '@angular/common';
   providers: [OffersService],
 })
 export class HomeComponent implements OnInit {
-  public offers: Offers[] = [];
+  public offers$ = new Observable<Offers[]>();
 
   constructor(private _offersService: OffersService) {}
 
   ngOnInit(): void {
-    this._offersService.getMainOffers().subscribe((offers) => {
-      this.offers = offers;
-    });
+    this.offers$ = this._offersService.getMainOffers();
   }
 }

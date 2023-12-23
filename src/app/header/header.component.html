@@ -8,9 +8,23 @@
   </a>
   <img src="assets/cart-icon.svg" alt="ícone carrinho" class="w-14" />
 </header>
-<nav class="bg-blue-700 text-slate-50">
+<nav class="bg-blue-700">
   <ul class="container flex gap-8 py-2">
-    <li><a routerLink="/restaurantes">Restaurantes</a></li>
-    <li><a routerLink="/diversao">Diversão</a></li>
+    <li>
+      <a
+        routerLink="/restaurantes"
+        routerLinkActive="!text-slate-50"
+        class="text-slate-300 transition hover:text-slate-50"
+        >Restaurantes</a
+      >
+    </li>
+    <li>
+      <a
+        routerLink="/diversao"
+        routerLinkActive="!text-slate-50"
+        class="text-slate-300 transition hover:text-slate-50"
+        >Diversão</a
+      >
+    </li>
   </ul>
 </nav>
