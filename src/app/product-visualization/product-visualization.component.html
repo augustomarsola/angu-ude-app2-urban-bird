@@ -20,7 +20,7 @@
             Anunciado por:
             <span class="font-bold">{{ product.anunciante }}</span>
           </p>
-          <p class="mt-4">{{ product.valor | currency: "BRL" }}</p>
+          <p class="mt-4">{{ product.valor | brlCurrency }}</p>
           <a
             [routerLink]="['/oferta', product.id]"
             class="mt-4 rounded border border-green-600 bg-slate-50 px-3 py-2 text-green-600 transition hover:bg-green-600 hover:text-slate-50"
