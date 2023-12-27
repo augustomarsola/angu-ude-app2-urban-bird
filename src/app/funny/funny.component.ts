@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Offers, ProductProps } from '../models/offers.model';
 import { ProductVisualizationComponent } from '../product-visualization/product-visualization.component';
 import { OffersService } from '../services/offers.service';
@@ -15,7 +15,7 @@ export class FunnyComponent implements OnInit {
     title: 'Cinema, viagens, diversão e muito mais!',
     description:
       'Conheça as melhores ofertas para você se divertir quando quiser:',
-    products$: of<Offers[]>([]),
+    products$: new Observable<Offers[]>(),
   };
 
   private _offersService: OffersService = inject(OffersService);
