@@ -1,3 +1,3 @@
-export const url = {
-  api: '',
+export const URL = {
+  API: '',
 };

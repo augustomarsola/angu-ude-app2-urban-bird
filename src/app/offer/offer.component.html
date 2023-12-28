@@ -36,5 +36,24 @@
         </button>
       </div>
     </div>
+    <div class="mt-7 rounded border border-slate-300 p-4 shadow">
+      <div class="flex gap-2">
+        <a
+          routerLink="como-usar"
+          class="rounded-sm border px-2 py-1 shadow transition hover:shadow-none"
+          routerLinkActive="border-slate-600 ba"
+          >Como usar</a
+        >
+        <a
+          routerLink="onde-fica"
+          class="rounded-sm border px-2 py-1 shadow transition hover:shadow-none"
+          routerLinkActive="border-slate-600"
+          >Onde fica</a
+        >
+      </div>
+      <div class="mt-3">
+        <router-outlet />
+      </div>
+    </div>
   }
 </section>
