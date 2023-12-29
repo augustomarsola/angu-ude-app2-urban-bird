@@ -1,1 +1,3 @@
-<p>where-is works!</p>
+@if (whereIs$ | async; as whereIs) {
+  <p>{{ whereIs.descricao }}</p>
+}

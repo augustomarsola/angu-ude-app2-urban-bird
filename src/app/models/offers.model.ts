@@ -21,7 +21,10 @@ export type ProductProps = {
   products$: Observable<Offers[]>;
 };
 
-export type HowToUse = {
+type OffersDescriptions = {
   id: number;
   descricao: string;
 };
+
+export type HowToUse = OffersDescriptions;
+export type WhereIs = OffersDescriptions;

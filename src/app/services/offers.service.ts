@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { URL } from '../../environments/environment';
-import { HowToUse, Offers } from '../models/offers.model';
+import { HowToUse, Offers, WhereIs } from '../models/offers.model';
 
 @Injectable({
   providedIn: 'root',
@@ -40,5 +40,11 @@ export class OffersService {
     return this._http
       .get<HowToUse[]>(`${URL.API}/como-usar/?id=${id}`)
       .pipe(map((howToUse) => howToUse[0]));
+  }
+
+  public getWhereIsById(id: number): Observable<WhereIs> {
+    return this._http
+      .get<WhereIs[]>(`${URL.API}/onde-fica/?id=${id}`)
+      .pipe(map((whereIs) => whereIs[0]));
   }
 }
