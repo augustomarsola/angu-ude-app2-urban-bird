@@ -1,1 +1,5 @@
-<p>how-to-use works!</p>
+@if (howToUse$ | async; as howToUse) {
+  <p>
+    {{ howToUse.descricao }}
+  </p>
+}

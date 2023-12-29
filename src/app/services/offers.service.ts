@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { URL } from '../../environments/environment';
-import { Offers } from '../models/offers.model';
+import { HowToUse, Offers } from '../models/offers.model';
 
 @Injectable({
   providedIn: 'root',
@@ -34,5 +34,11 @@ export class OffersService {
         return offers[0];
       }),
     );
+  }
+
+  public getHowToUseById(id: number): Observable<HowToUse> {
+    return this._http
+      .get<HowToUse[]>(`${URL.API}/como-usar/?id=${id}`)
+      .pipe(map((howToUse) => howToUse[0]));
   }
 }

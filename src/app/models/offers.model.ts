@@ -20,3 +20,8 @@ export type ProductProps = {
   description: string;
   products$: Observable<Offers[]>;
 };
+
+export type HowToUse = {
+  id: number;
+  descricao: string;
+};
