@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, map } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 import { URL } from '../../environments/environment';
 import { HowToUse, Offers, WhereIs } from '../models/offers.model';
 
@@ -49,6 +49,9 @@ export class OffersService {
   }
 
   public searchOffer(searchText: string): Observable<Offers[]> {
+    if (!searchText.trim()) {
+      return of([]);
+    }
     return this._http.get<Offers[]>(
       `${URL.API}/ofertas?descricao_oferta_like=${searchText}`,
     );

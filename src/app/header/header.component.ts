@@ -1,39 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { Component, OnInit, inject } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import {
-  Subject,
+  Observable,
   debounceTime,
   distinctUntilChanged,
-  filter,
   switchMap,
 } from 'rxjs';
+import { Offers } from '../models/offers.model';
 import { OffersService } from '../services/offers.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, AsyncPipe, ReactiveFormsModule],
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit {
-  private searchSubject = new Subject<string>();
+  public searchInput = new FormControl('', { nonNullable: true });
+  public offersSearch$ = new Observable<Offers[]>();
+  public isNotEmptySearchInput = false;
 
-  constructor(private _offersService: OffersService) {}
+  private _offersService = inject(OffersService);
 
   ngOnInit(): void {
-    this.searchSubject
-      .pipe(
-        debounceTime(300),
-        distinctUntilChanged(),
-        filter((searchTerm: string) => searchTerm.trim() !== ''),
-        switchMap((searchText) => this._offersService.searchOffer(searchText)),
-      )
-      .subscribe((res) => {
-        console.log(res);
-      });
+    this.offersSearch$ = this.searchInput.valueChanges.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap((searchText) => this._offersService.searchOffer(searchText)),
+    );
   }
 
-  public onInputChange(searchText: string) {
-    this.searchSubject.next(searchText);
+  public clickOnOffer() {
+    this.searchInput.setValue('');
+  }
+
+  public onChangeSearchInput() {
+    this.isNotEmptySearchInput = !!this.searchInput.value;
   }
 }

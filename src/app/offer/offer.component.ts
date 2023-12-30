@@ -32,8 +32,8 @@ export class OfferComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.offer$ = this._offersService.getOfferById(
-      this._activatedRoute.snapshot.params['id'],
-    );
+    this._activatedRoute.params.subscribe((params) => {
+      this.offer$ = this._offersService.getOfferById(params['id']);
+    });
   }
 }

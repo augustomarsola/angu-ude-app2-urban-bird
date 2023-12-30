@@ -6,13 +6,33 @@
       <p class="text-3xl font-bold text-blue-800">Bird</p>
     </div>
   </a>
-  <input
-    type="text"
-    class="input w-full"
-    #searchInput
-    (input)="onInputChange(searchInput.value)"
-    placeholder="Pesquisar..."
-  />
+  <div class="relative w-full">
+    <input
+      type="text"
+      class="input w-full"
+      [formControl]="searchInput"
+      (input)="onChangeSearchInput()"
+      placeholder="Pesquisar ofertas..."
+    />
+    @if (offersSearch$ | async; as offers) {
+      @if (offers.length && isNotEmptySearchInput) {
+        <ul
+          class="absolute w-full rounded border border-slate-300 bg-slate-50 text-slate-700"
+        >
+          @for (offer of offers; track offer.id) {
+            <li class="flex flex-col border-b border-slate-300">
+              <a
+                class="px-4 py-2 transition last:border-b-0 hover:bg-slate-200"
+                [routerLink]="['oferta', offer.id]"
+                (click)="clickOnOffer()"
+                >{{ offer.titulo }}</a
+              >
+            </li>
+          }
+        </ul>
+      }
+    }
+  </div>
   <img src="assets/cart-icon.svg" alt="ícone carrinho" class="w-14" />
 </header>
 <nav class="bg-blue-700">
