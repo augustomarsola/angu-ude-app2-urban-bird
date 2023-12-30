@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
+import {
+  Subject,
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  switchMap,
+} from 'rxjs';
 import { OffersService } from '../services/offers.service';
 
 @Component({
@@ -19,6 +25,7 @@ export class HeaderComponent implements OnInit {
       .pipe(
         debounceTime(300),
         distinctUntilChanged(),
+        filter((searchTerm: string) => searchTerm.trim() !== ''),
         switchMap((searchText) => this._offersService.searchOffer(searchText)),
       )
       .subscribe((res) => {
