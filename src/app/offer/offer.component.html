@@ -27,7 +27,7 @@
       <div class="flex flex-col items-center">
         <p class="text-sm">Por apenas</p>
         <p class="mt-3 text-3xl font-bold">
-          {{ (offer$ | async)?.valor | brlCurrency }}
+          {{ (offer$ | async)?.valor | currency: "BRL" }}
         </p>
         <button
           class="mt-3 rounded border border-yellow-500 bg-yellow-500 px-3 py-2 text-slate-50 transition hover:border-yellow-700 hover:bg-yellow-700"

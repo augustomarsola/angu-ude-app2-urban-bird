@@ -1,4 +1,4 @@
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   ActivatedRoute,
@@ -8,7 +8,6 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Offers } from '../models/offers.model';
-import { BrlCurrencyPipe } from '../pipes/brl-currency.pipe';
 import { OffersService } from '../services/offers.service';
 
 @Component({
@@ -16,7 +15,7 @@ import { OffersService } from '../services/offers.service';
   standalone: true,
   imports: [
     AsyncPipe,
-    BrlCurrencyPipe,
+    CurrencyPipe,
     RouterOutlet,
     RouterLink,
     RouterLinkActive,
