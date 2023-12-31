@@ -1,11 +1,11 @@
-import { CommonModule } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-purchase-order',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, NgIf],
   templateUrl: './purchase-order.component.html',
 })
 export class PurchaseOrderComponent {
@@ -39,6 +39,10 @@ export class PurchaseOrderComponent {
 
   public get isPaymentMethodInvalid() {
     return this.paymentMethod?.invalid && this.paymentMethod?.touched;
+  }
+
+  public get formIsInvalid() {
+    return this.purchaseOrderForm.invalid;
   }
 
   public onSubmit() {

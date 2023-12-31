@@ -68,7 +68,7 @@
             class="input {{ isPaymentMethodInvalid && 'is-invalid' }}"
             formControlName="paymentMethod"
           >
-            <option value="">Selecione uma opção</option>
+            <option value="">Selecione um método de pagamento</option>
             <option value="Dinheiro">Dinheiro</option>
             <option value="Debito">Débito</option>
             <option value="Credito">Crédito</option>
@@ -82,7 +82,8 @@
     <div class="text-right">
       <button
         type="submit"
-        class="rounded bg-blue-600 px-3 py-2 text-slate-50 transition hover:bg-blue-800"
+        [disabled]="formIsInvalid"
+        class="rounded bg-blue-600 px-3 py-2 text-slate-50 transition hover:bg-blue-800 disabled:bg-slate-400"
       >
         Confirmar compra
       </button>
