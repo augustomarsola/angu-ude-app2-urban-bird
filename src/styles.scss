@@ -5,5 +5,8 @@
 @layer components {
   .input {
     @apply w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
+    &.is-invalid {
+      @apply border-red-500 text-red-500 focus:ring-red-300;
+    }
   }
 }
