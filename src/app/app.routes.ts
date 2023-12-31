@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { HowToUseComponent } from './offer/how-to-use/how-to-use.component';
 import { OfferComponent } from './offer/offer.component';
 import { WhereIsComponent } from './offer/where-is/where-is.component';
+import { PurchaseOrderComponent } from './purchase-order/purchase-order.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 
 export const routes: Routes = [
@@ -20,4 +21,5 @@ export const routes: Routes = [
       { path: 'onde-fica', component: WhereIsComponent },
     ],
   },
+  { path: 'ordem-compra', component: PurchaseOrderComponent },
 ];
