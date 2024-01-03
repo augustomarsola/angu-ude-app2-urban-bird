@@ -1,6 +1,7 @@
 import { NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Order } from '../models/order.model';
 import { PurchaseOrderService } from '../services/purchase-order.service';
 
 @Component({
@@ -50,8 +51,9 @@ export class PurchaseOrderComponent {
   public onSubmit() {
     this.purchaseOrderForm.markAllAsTouched();
     if (this.purchaseOrderForm.valid) {
-      console.log(this.purchaseOrderForm.value);
-      this._purchaseOrderService.makePurchase();
+      this._purchaseOrderService.makePurchase(
+        this.purchaseOrderForm.value as Order,
+      );
     }
   }
 }
