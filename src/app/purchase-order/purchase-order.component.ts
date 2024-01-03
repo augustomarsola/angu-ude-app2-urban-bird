@@ -1,6 +1,7 @@
 import { NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { PurchaseOrderService } from '../services/purchase-order.service';
 
 @Component({
   selector: 'app-purchase-order',
@@ -10,6 +11,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 })
 export class PurchaseOrderComponent {
   private _fb = inject(FormBuilder);
+  private _purchaseOrderService = inject(PurchaseOrderService);
   public purchaseOrderForm = this._fb.group({
     address: ['', Validators.required],
     number: ['', Validators.required],
@@ -47,6 +49,9 @@ export class PurchaseOrderComponent {
 
   public onSubmit() {
     this.purchaseOrderForm.markAllAsTouched();
-    console.log(this.purchaseOrderForm.value);
+    if (this.purchaseOrderForm.valid) {
+      console.log(this.purchaseOrderForm.value);
+      this._purchaseOrderService.makePurchase();
+    }
   }
 }
