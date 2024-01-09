@@ -13,7 +13,7 @@ import { PurchaseOrderService } from '../services/purchase-order.service';
 export class PurchaseOrderComponent {
   private _fb = inject(FormBuilder);
   private _purchaseOrderService = inject(PurchaseOrderService);
-  public purchaseOrderForm = this._fb.group({
+  public purchaseOrderForm = this._fb.nonNullable.group({
     address: ['', Validators.required],
     number: ['', Validators.required],
     complement: [''],
@@ -51,9 +51,9 @@ export class PurchaseOrderComponent {
   public onSubmit() {
     this.purchaseOrderForm.markAllAsTouched();
     if (this.purchaseOrderForm.valid) {
-      this._purchaseOrderService.makePurchase(
-        this.purchaseOrderForm.value as Order,
-      );
+      this._purchaseOrderService
+        .makePurchase(this.purchaseOrderForm.value as Order)
+        .subscribe();
     }
   }
 }
