@@ -1,12 +1,12 @@
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   ActivatedRoute,
   RouterLink,
   RouterLinkActive,
   RouterOutlet,
 } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { Offers } from '../models/offers.model';
 import { OffersService } from '../services/offers.service';
 
@@ -22,8 +22,9 @@ import { OffersService } from '../services/offers.service';
   ],
   templateUrl: './offer.component.html',
 })
-export class OfferComponent implements OnInit {
+export class OfferComponent implements OnInit, OnDestroy {
   public offer$ = new Observable<Offers>();
+  private _destroy$ = new Subject();
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -31,8 +32,15 @@ export class OfferComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this._activatedRoute.params.subscribe((params) => {
-      this.offer$ = this._offersService.getOfferById(params['id']);
-    });
+    this._activatedRoute.params
+      .pipe(takeUntil(this._destroy$))
+      .subscribe((params) => {
+        this.offer$ = this._offersService.getOfferById(params['id']);
+      });
+  }
+
+  ngOnDestroy(): void {
+    this._destroy$.next(true);
+    this._destroy$.complete();
   }
 }
