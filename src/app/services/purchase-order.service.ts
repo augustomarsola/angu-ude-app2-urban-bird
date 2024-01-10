@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
 import { URL } from '../../environments/environment';
 import { Order } from '../models/order.model';
 
@@ -16,13 +16,11 @@ export class PurchaseOrderService {
 
   constructor(private _http: HttpClient) {}
 
-  public makePurchase(order: Order): Observable<void> {
-    return this._http
-      .post<void>(`${URL.API}/pedidos`, order, this.httpOptions)
-      .pipe(
-        map((res) => {
-          console.log(res);
-        }),
-      );
+  public makePurchase(order: Order): Observable<Order> {
+    return this._http.post<Order>(
+      `${URL.API}/pedidos`,
+      order,
+      this.httpOptions,
+    );
   }
 }

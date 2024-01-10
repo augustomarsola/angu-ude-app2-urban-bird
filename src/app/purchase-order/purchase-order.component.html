@@ -1,92 +1,96 @@
 <section class="container mx-auto mb-32">
-  <h2 class="border-b py-4 text-2xl font-bold text-slate-600">Sua compra</h2>
-  <form novalidate [formGroup]="purchaseOrderForm" (ngSubmit)="onSubmit()">
-    <div class="flex justify-between py-8">
-      <div class="flex justify-start gap-4">
-        <img src="assets/urban-bird-logo.svg" alt="logo" class="w-14" />
+  @if (!idOrder) {
+    <h2 class="border-b py-4 text-2xl font-bold text-slate-600">Sua compra</h2>
+    <form novalidate [formGroup]="purchaseOrderForm" (ngSubmit)="onSubmit()">
+      <div class="flex justify-between py-8">
+        <div class="flex justify-start gap-4">
+          <img src="assets/urban-bird-logo.svg" alt="logo" class="w-14" />
+          <div>
+            <p>titulo</p>
+            <p>sub-titulo</p>
+          </div>
+        </div>
         <div>
-          <p>titulo</p>
-          <p>sub-titulo</p>
+          <button>+</button>
+          <span>Numero</span>
+          <button>-</button>
         </div>
+        <div>valor final</div>
       </div>
-      <div>
-        <button>+</button>
-        <span>Numero</span>
-        <button>-</button>
-      </div>
-      <div>valor final</div>
-    </div>
-    <p class="text-right text-xl font-bold text-slate-600">
-      Total do pedido: total
-    </p>
+      <p class="text-right text-xl font-bold text-slate-600">
+        Total do pedido: total
+      </p>
 
-    <div class="mb-8">
-      <h3 class="mb-4 border-b py-4 text-xl font-bold text-slate-500">
-        Dados de entrega
-      </h3>
-      <div class="grid grid-cols-12 gap-4">
-        <div class="col-span-6">
-          <input
-            type="text"
-            class="input {{ isAddressInvalid && 'is-invalid' }}"
-            placeholder="Endereço*"
-            formControlName="address"
-          />
-          <div class="text-sm text-red-600" *ngIf="isAddressInvalid">
-            Insira um endereço
+      <div class="mb-8">
+        <h3 class="mb-4 border-b py-4 text-xl font-bold text-slate-500">
+          Dados de entrega
+        </h3>
+        <div class="grid grid-cols-12 gap-4">
+          <div class="col-span-6">
+            <input
+              type="text"
+              class="input {{ isAddressInvalid && 'is-invalid' }}"
+              placeholder="Endereço*"
+              formControlName="address"
+            />
+            <div class="text-sm text-red-600" *ngIf="isAddressInvalid">
+              Insira um endereço
+            </div>
           </div>
-        </div>
-        <div class="col-span-2">
-          <input
-            type="text"
-            class="input {{ isNumberInvalid && 'is-invalid' }}"
-            placeholder="Número*"
-            formControlName="number"
-          />
-          <div class="text-sm text-red-600" *ngIf="isNumberInvalid">
-            Insira um número
+          <div class="col-span-2">
+            <input
+              type="text"
+              class="input {{ isNumberInvalid && 'is-invalid' }}"
+              placeholder="Número*"
+              formControlName="number"
+            />
+            <div class="text-sm text-red-600" *ngIf="isNumberInvalid">
+              Insira um número
+            </div>
           </div>
-        </div>
-        <div class="col-span-4">
-          <input
-            type="text"
-            class="input"
-            placeholder="Complemento"
-            formControlName="complement"
-          />
+          <div class="col-span-4">
+            <input
+              type="text"
+              class="input"
+              placeholder="Complemento"
+              formControlName="complement"
+            />
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="mb-8">
-      <h3 class="mb-4 border-b py-4 text-xl font-bold text-slate-500">
-        Dados do pagamento
-      </h3>
-      <div class="grid grid-cols-12 gap-4">
-        <div class="col-span-4">
-          <select
-            class="input {{ isPaymentMethodInvalid && 'is-invalid' }}"
-            formControlName="paymentMethod"
-          >
-            <option value="">Selecione um método de pagamento</option>
-            <option value="Dinheiro">Dinheiro</option>
-            <option value="Debito">Débito</option>
-            <option value="Credito">Crédito</option>
-          </select>
-          <div class="text-sm text-red-600" *ngIf="isPaymentMethodInvalid">
-            Informe um método de pagamento
+      <div class="mb-8">
+        <h3 class="mb-4 border-b py-4 text-xl font-bold text-slate-500">
+          Dados do pagamento
+        </h3>
+        <div class="grid grid-cols-12 gap-4">
+          <div class="col-span-4">
+            <select
+              class="input {{ isPaymentMethodInvalid && 'is-invalid' }}"
+              formControlName="paymentMethod"
+            >
+              <option value="">Selecione um método de pagamento</option>
+              <option value="Dinheiro">Dinheiro</option>
+              <option value="Debito">Débito</option>
+              <option value="Credito">Crédito</option>
+            </select>
+            <div class="text-sm text-red-600" *ngIf="isPaymentMethodInvalid">
+              Informe um método de pagamento
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="text-right">
-      <button
-        type="submit"
-        [disabled]="formIsInvalid"
-        class="rounded bg-blue-600 px-3 py-2 text-slate-50 transition hover:bg-blue-800 disabled:bg-slate-400"
-      >
-        Confirmar compra
-      </button>
-    </div>
-  </form>
+      <div class="text-right">
+        <button
+          type="submit"
+          [disabled]="formIsInvalid"
+          class="rounded bg-blue-600 px-3 py-2 text-slate-50 transition hover:bg-blue-800 disabled:bg-slate-400"
+        >
+          Confirmar compra
+        </button>
+      </div>
+    </form>
+  } @else {
+    <app-success-order [idOrder]="idOrder" />
+  }
 </section>

@@ -192,6 +192,27 @@
       "complement": "",
       "paymentMethod": "Dinheiro",
       "id": 1
+    },
+    {
+      "address": "adre",
+      "number": "12",
+      "complement": "1",
+      "paymentMethod": "Dinheiro",
+      "id": 2
+    },
+    {
+      "address": "tes",
+      "number": "1",
+      "complement": "",
+      "paymentMethod": "Dinheiro",
+      "id": 3
+    },
+    {
+      "address": "nob",
+      "number": "2",
+      "complement": "1",
+      "paymentMethod": "Debito",
+      "id": 4
     }
   ]
 }
