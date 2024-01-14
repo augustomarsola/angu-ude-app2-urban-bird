@@ -8,7 +8,7 @@ import { Order } from '../models/order.model';
   providedIn: 'root',
 })
 export class PurchaseOrderService {
-  private httpOptions = {
+  private _httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
@@ -20,7 +20,7 @@ export class PurchaseOrderService {
     return this._http.post<Order>(
       `${URL.API}/pedidos`,
       order,
-      this.httpOptions,
+      this._httpOptions,
     );
   }
 }
