@@ -25,9 +25,22 @@ export class CartService {
       quantidade: 1,
     };
 
-    const newCartItens = [...this._cartItens(), newCartItem];
-    this._cartItens.set(newCartItens);
-    this._saveLocalStorage();
+    const oldCartItens = this._cartItens();
+    const hasItem = oldCartItens.find((item) => item.id === newCartItem.id);
+    if (hasItem) {
+      const newCartItens = oldCartItens.map((item) => {
+        if (item.id === newCartItem.id) {
+          return { ...item, quantidade: item.quantidade + 1 };
+        }
+        return item;
+      });
+      this._cartItens.set(newCartItens);
+      this._saveLocalStorage();
+    } else {
+      const newCartItens = [...this._cartItens(), newCartItem];
+      this._cartItens.set(newCartItens);
+      this._saveLocalStorage();
+    }
   }
 
   private _verifyLocalStorage(): void {
