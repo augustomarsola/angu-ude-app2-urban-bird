@@ -8,6 +8,7 @@ import {
 } from '@angular/router';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { Offers } from '../models/offers.model';
+import { CartService } from '../services/cart.service';
 import { OffersService } from '../services/offers.service';
 
 @Component({
@@ -29,6 +30,7 @@ export class OfferComponent implements OnInit, OnDestroy {
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _offersService: OffersService,
+    private _cartService: CartService,
   ) {}
 
   ngOnInit(): void {
@@ -37,10 +39,16 @@ export class OfferComponent implements OnInit, OnDestroy {
       .subscribe((params) => {
         this.offer$ = this._offersService.getOfferById(params['id']);
       });
+
+    console.log(this._cartService.cartItens());
   }
 
   ngOnDestroy(): void {
     this._destroy$.next(true);
     this._destroy$.complete();
+  }
+
+  public addToCart(offer: Offers): void {
+    this._cartService.setNewCartItem(offer);
   }
 }

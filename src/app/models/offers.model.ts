@@ -1,19 +1,17 @@
 import { Observable } from 'rxjs';
 
-export class Offers {
-  public id: number = 0;
-  public categoria: string = '';
-  public titulo: string = '';
-  public descricao_oferta: string = '';
-  public anunciante: string = '';
-  public valor: number = 0;
-  public destaque: boolean = false;
-  public imagens = [
-    {
-      url: '',
-    },
-  ];
-}
+export type Offers = {
+  id: number;
+  categoria: string;
+  titulo: string;
+  descricao_oferta: string;
+  anunciante: string;
+  valor: number;
+  destaque: boolean;
+  imagens: {
+    url: string;
+  }[];
+};
 
 export type ProductProps = {
   title: string;
