@@ -56,4 +56,35 @@ export class CartService {
       JSON.stringify(this._cartItens()),
     );
   }
+
+  public cartTotalValue(): number {
+    return this._cartItens().reduce((total, item) => {
+      return total + item.quantidade * item.valor;
+    }, 0);
+  }
+
+  public addOneItem(itemId: number): void {
+    const newCartItens = this._cartItens().map((item) => {
+      if (item.id === itemId) {
+        return { ...item, quantidade: item.quantidade + 1 };
+      }
+      return item;
+    });
+    this._cartItens.set(newCartItens);
+    this._saveLocalStorage();
+  }
+
+  public removeOneItem(itemId: number): void {
+    const newCartItens = this._cartItens().reduce((cartItens, item) => {
+      if (item.id === itemId) {
+        if (item.quantidade > 1) {
+          return [...cartItens, { ...item, quantidade: item.quantidade - 1 }];
+        }
+        return cartItens;
+      }
+      return [...cartItens, item];
+    }, [] as CartItem[]);
+    this._cartItens.set(newCartItens);
+    this._saveLocalStorage();
+  }
 }

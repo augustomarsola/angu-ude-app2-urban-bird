@@ -1,5 +1,5 @@
 import { CurrencyPipe, NgIf } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Order } from '../models/order.model';
 import { CartService } from '../services/cart.service';
@@ -12,7 +12,7 @@ import { SuccessOrderComponent } from './success-order/success-order.component';
   imports: [ReactiveFormsModule, NgIf, SuccessOrderComponent, CurrencyPipe],
   templateUrl: './purchase-order.component.html',
 })
-export class PurchaseOrderComponent implements OnInit {
+export class PurchaseOrderComponent {
   private _fb = inject(FormBuilder);
   private _purchaseOrderService = inject(PurchaseOrderService);
 
@@ -23,7 +23,18 @@ export class PurchaseOrderComponent implements OnInit {
     paymentMethod: ['', Validators.required],
   });
   public idOrder = 0;
-  public cartItems = this._cartService.cartItens();
+
+  public get cartItems() {
+    return this._cartService.cartItens();
+  }
+
+  public get totalValue() {
+    return this._cartService.cartTotalValue();
+  }
+
+  public get cartIsEmpty() {
+    return this._cartService.cartItens().length === 0;
+  }
 
   public get address() {
     return this.purchaseOrderForm.get('address');
@@ -55,10 +66,6 @@ export class PurchaseOrderComponent implements OnInit {
 
   constructor(private _cartService: CartService) {}
 
-  ngOnInit(): void {
-    console.log(this._cartService.cartItens());
-  }
-
   public onSubmit() {
     this.purchaseOrderForm.markAllAsTouched();
     if (this.purchaseOrderForm.valid) {
@@ -68,5 +75,13 @@ export class PurchaseOrderComponent implements OnInit {
           this.idOrder = order.id;
         });
     }
+  }
+
+  public handleAddOneItemClick(itemId: number) {
+    this._cartService.addOneItem(itemId);
+  }
+
+  public handleRemoveOneItemClick(itemId: number) {
+    this._cartService.removeOneItem(itemId);
   }
 }

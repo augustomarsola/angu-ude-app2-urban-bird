@@ -2,33 +2,47 @@
   @if (!idOrder) {
     <h2 class="border-b py-4 text-2xl font-bold text-slate-600">Sua compra</h2>
     <form novalidate [formGroup]="purchaseOrderForm" (ngSubmit)="onSubmit()">
-      @for (item of cartItems; track item.id) {
-        <div class="flex items-center justify-between py-8">
-          <div class="flex basis-96 justify-start gap-4">
-            <img [src]="item.img" alt="logo" class="h-14 w-14 object-contain" />
-            <div>
-              <p class="font-bold text-slate-800">{{ item.titulo }}</p>
-              <p>{{ item.descricao_oferta }}</p>
+      @if (cartIsEmpty) {
+        <h3 class="py-14 text-center text-lg font-bold text-slate-600">
+          Seu carrinho está vazio
+        </h3>
+      } @else {
+        @for (item of cartItems; track item.id) {
+          <div class="flex items-center justify-between py-8">
+            <div class="flex basis-96 justify-start gap-4">
+              <img
+                [src]="item.img"
+                alt="logo"
+                class="h-14 w-14 object-contain"
+              />
+              <div>
+                <p class="font-bold text-slate-800">{{ item.titulo }}</p>
+                <p>{{ item.descricao_oferta }}</p>
+              </div>
             </div>
+            <div class="flex items-center gap-3">
+              <button
+                class="rounded bg-blue-600 px-2 font-mono text-xl font-bold text-slate-50 transition hover:bg-blue-700"
+                (click)="handleRemoveOneItemClick(item.id)"
+                type="button"
+              >
+                -
+              </button>
+              <span>{{ item.quantidade }}</span>
+              <button
+                class="rounded bg-blue-600 px-2 font-mono text-xl font-bold text-slate-50 transition hover:bg-blue-700"
+                (click)="handleAddOneItemClick(item.id)"
+                type="button"
+              >
+                +
+              </button>
+            </div>
+            <div class="font-bold">{{ item.valor | currency: "BRL" }}</div>
           </div>
-          <div class="flex items-center gap-3">
-            <button
-              class="rounded bg-blue-600 px-2 font-mono text-xl font-bold text-slate-50 transition hover:bg-blue-700"
-            >
-              -
-            </button>
-            <span>{{ item.quantidade }}</span>
-            <button
-              class="rounded bg-blue-600 px-2 font-mono text-xl font-bold text-slate-50 transition hover:bg-blue-700"
-            >
-              +
-            </button>
-          </div>
-          <div class="font-bold">{{ item.valor | currency: "BRL" }}</div>
-        </div>
+        }
       }
       <p class="text-right text-xl font-bold text-slate-600">
-        Total do pedido: total
+        Total do pedido: {{ totalValue | currency: "BRL" }}
       </p>
 
       <div class="mb-8">

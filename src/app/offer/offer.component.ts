@@ -39,8 +39,6 @@ export class OfferComponent implements OnInit, OnDestroy {
       .subscribe((params) => {
         this.offer$ = this._offersService.getOfferById(params['id']);
       });
-
-    console.log(this._cartService.cartItens());
   }
 
   ngOnDestroy(): void {
