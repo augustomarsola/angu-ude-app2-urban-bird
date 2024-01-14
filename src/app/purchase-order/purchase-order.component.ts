@@ -69,6 +69,11 @@ export class PurchaseOrderComponent {
   public onSubmit() {
     this.purchaseOrderForm.markAllAsTouched();
     if (this.purchaseOrderForm.valid) {
+      if (this.cartItems.length === 0) {
+        alert('Seu carrinho esta vazio');
+        return;
+      }
+
       this._purchaseOrderService
         .makePurchase(this.purchaseOrderForm.value as Order)
         .subscribe((order) => {

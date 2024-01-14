@@ -48,5 +48,6 @@ export class OfferComponent implements OnInit, OnDestroy {
 
   public addToCart(offer: Offers): void {
     this._cartService.setNewCartItem(offer);
+    alert('Adicionado ao carrinho');
   }
 }
