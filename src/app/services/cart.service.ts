@@ -6,8 +6,15 @@ import { Offers } from '../models/offers.model';
   providedIn: 'root',
 })
 export class CartService {
+  private _localStorageName = '@UrbanBird:cartItens';
   private _cartItens: WritableSignal<CartItem[]> = signal([]);
+
   public cartItens = this._cartItens.asReadonly();
+
+  constructor() {
+    this._verifyLocalStorage();
+  }
+
   public setNewCartItem(cartItem: Offers): void {
     const newCartItem: CartItem = {
       id: cartItem.id,
@@ -20,5 +27,20 @@ export class CartService {
 
     const newCartItens = [...this._cartItens(), newCartItem];
     this._cartItens.set(newCartItens);
+    this._saveLocalStorage();
+  }
+
+  private _verifyLocalStorage(): void {
+    const cartItens = localStorage.getItem(this._localStorageName);
+    if (cartItens) {
+      this._cartItens.set(JSON.parse(cartItens));
+    }
+  }
+
+  private _saveLocalStorage(): void {
+    localStorage.setItem(
+      this._localStorageName,
+      JSON.stringify(this._cartItens()),
+    );
   }
 }

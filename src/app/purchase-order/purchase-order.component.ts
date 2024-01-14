@@ -1,17 +1,18 @@
-import { NgIf } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { CurrencyPipe, NgIf } from '@angular/common';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Order } from '../models/order.model';
+import { CartService } from '../services/cart.service';
 import { PurchaseOrderService } from '../services/purchase-order.service';
 import { SuccessOrderComponent } from './success-order/success-order.component';
 
 @Component({
   selector: 'app-purchase-order',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf, SuccessOrderComponent],
+  imports: [ReactiveFormsModule, NgIf, SuccessOrderComponent, CurrencyPipe],
   templateUrl: './purchase-order.component.html',
 })
-export class PurchaseOrderComponent {
+export class PurchaseOrderComponent implements OnInit {
   private _fb = inject(FormBuilder);
   private _purchaseOrderService = inject(PurchaseOrderService);
 
@@ -22,6 +23,7 @@ export class PurchaseOrderComponent {
     paymentMethod: ['', Validators.required],
   });
   public idOrder = 0;
+  public cartItems = this._cartService.cartItens();
 
   public get address() {
     return this.purchaseOrderForm.get('address');
@@ -49,6 +51,12 @@ export class PurchaseOrderComponent {
 
   public get formIsInvalid() {
     return this.purchaseOrderForm.invalid;
+  }
+
+  constructor(private _cartService: CartService) {}
+
+  ngOnInit(): void {
+    console.log(this._cartService.cartItens());
   }
 
   public onSubmit() {
