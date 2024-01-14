@@ -87,4 +87,9 @@ export class CartService {
     this._cartItens.set(newCartItens);
     this._saveLocalStorage();
   }
+
+  public clearCart(): void {
+    this._cartItens.set([]);
+    localStorage.removeItem(this._localStorageName);
+  }
 }

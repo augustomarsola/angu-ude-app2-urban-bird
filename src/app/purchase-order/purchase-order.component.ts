@@ -74,10 +74,19 @@ export class PurchaseOrderComponent {
         return;
       }
 
+      const orderItems = {
+        address: this.purchaseOrderForm.value.address!,
+        number: this.purchaseOrderForm.value.number!,
+        complement: this.purchaseOrderForm.value.complement,
+        paymentMethod: this.purchaseOrderForm.value.paymentMethod!,
+        itens: this.cartItems,
+      } as Order;
+
       this._purchaseOrderService
-        .makePurchase(this.purchaseOrderForm.value as Order)
+        .makePurchase(orderItems as Order)
         .subscribe((order) => {
           this.idOrder = order.id;
+          this._cartService.clearCart();
         });
     }
   }

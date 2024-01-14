@@ -213,6 +213,48 @@
       "complement": "1",
       "paymentMethod": "Debito",
       "id": 4
+    },
+    {
+      "address": "Fechou",
+      "number": "12",
+      "complement": "apto",
+      "paymentMethod": "Debito",
+      "itens": [
+        {
+          "id": 2,
+          "titulo": "Cozinha Mexicana",
+          "descricao_oferta": "Almoço ou Jantar com Rodízio Mexicano delicioso.",
+          "img": "/assets/ofertas/2/img1.jpg",
+          "valor": 32.9,
+          "quantidade": 1
+        },
+        {
+          "id": 6,
+          "titulo": "Academia de tiro",
+          "descricao_oferta": "Sessão de tiro dinâmico com Instrutor, Estande, Alvo e Equipamentos.",
+          "img": "/assets/ofertas/6/img1.jpg",
+          "valor": 89.9,
+          "quantidade": 1
+        }
+      ],
+      "id": 5
+    },
+    {
+      "address": "Nuevo",
+      "number": "456",
+      "complement": "",
+      "paymentMethod": "Dinheiro",
+      "itens": [
+        {
+          "id": 4,
+          "titulo": "Estância das águas",
+          "descricao_oferta": "Diversão garantida com piscinas, trilhas e muito mais.",
+          "img": "/assets/ofertas/4/img1.jpg",
+          "valor": 31.9,
+          "quantidade": 4
+        }
+      ],
+      "id": 6
     }
   ]
 }
